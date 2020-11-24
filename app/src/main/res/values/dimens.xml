@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_4">4sp</dimen>
+    <dimen name="size_8">8sp</dimen>
+    <dimen name="size_12">12sp</dimen>
+    <dimen name="size_14">14sp</dimen>
+    <dimen name="size_40">40sp</dimen>
+
+    <dimen name="indent_3">3dp</dimen>
+    <dimen name="indent_4">4dp</dimen>
+    <dimen name="indent_6">6dp</dimen>
+    <dimen name="indent_8">8dp</dimen>
+    <dimen name="indent_10">10dp</dimen>
+    <dimen name="indent_16">16dp</dimen>
+    <dimen name="indent_28">28dp</dimen>
+    <dimen name="indent_24">24dp</dimen>
+
+</resources>
