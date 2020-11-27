@@ -61,7 +61,7 @@
             android:layout_marginBottom="@dimen/indent_8"
             app:layout_constraintBottom_toTopOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:srcCompat="@drawable/ic_rectangle" />
+            app:srcCompat="@drawable/ic_rectangle_with_border" />
 
         <TextView
             android:id="@+id/tv_pegi"
@@ -70,7 +70,7 @@
             android:layout_marginTop="@dimen/indent_4"
             android:layout_marginBottom="@dimen/indent_4"
             android:fontFamily="@font/roboto_black"
-            android:text="@string/age"
+            android:text="@string/tools_age"
             android:textColor="@color/white"
             android:textSize="@dimen/size_12"
             app:layout_constraintBottom_toBottomOf="@+id/iv_rectangle"
@@ -171,11 +171,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_black"
-            android:text="@string/review"
+            android:text="@string/tools_review"
             android:textAllCaps="true"
             android:textColor="@color/grey"
             android:textSize="@dimen/size_14"
-
             app:layout_constraintBottom_toBottomOf="@+id/iv_star_5"
             app:layout_constraintStart_toEndOf="@+id/iv_star_5"
             app:layout_constraintTop_toTopOf="@+id/iv_star_5" />
