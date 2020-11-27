@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020
+package com.androidacademy.academyapp2020.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.androidacademy.academyapp2020.data.model.Film
+import com.androidacademy.academyapp2020.R
 
 class FilmAdapter(private val listener: OnItemClickListener) :
     RecyclerView.Adapter<FilmAdapter.FilmHolder>() {

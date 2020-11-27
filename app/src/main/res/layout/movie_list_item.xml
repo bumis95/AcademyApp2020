@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/radial_gradient"
+    android:background="@drawable/gradient_radial"
     android:padding="2dp">
 
     <ImageView
@@ -21,7 +21,7 @@
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/film_item_gradient"
+        android:background="@drawable/gradient_linear"
         app:layout_constraintBottom_toBottomOf="@+id/iv_poster"
         app:layout_constraintEnd_toEndOf="@id/iv_poster"
         app:layout_constraintStart_toStartOf="@id/iv_poster"

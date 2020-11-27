@@ -25,7 +25,7 @@
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="298dp"
-            android:background="@drawable/gradient"
+            android:background="@drawable/gradient_linear"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,7 @@
             android:layout_marginTop="59dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_path" />
+            app:srcCompat="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/tv_back"

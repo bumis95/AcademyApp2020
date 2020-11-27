@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020
+package com.androidacademy.academyapp2020.view.adapter
 
 import android.content.Context
 import android.graphics.Rect

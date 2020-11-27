@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020
+package com.androidacademy.academyapp2020.data.model
 
 data class Film(
     val pegi: Int,

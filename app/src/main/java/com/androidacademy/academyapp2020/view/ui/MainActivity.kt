@@ -1,7 +1,8 @@
-package com.androidacademy.academyapp2020
+package com.androidacademy.academyapp2020.view.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.androidacademy.academyapp2020.R
 
 class MainActivity : AppCompatActivity() {
 

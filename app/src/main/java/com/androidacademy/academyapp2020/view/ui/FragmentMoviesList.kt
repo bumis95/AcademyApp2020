@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020
+package com.androidacademy.academyapp2020.view.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.androidacademy.academyapp2020.view.adapter.FilmAdapter
+import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
+import com.androidacademy.academyapp2020.R
 
 class FragmentMoviesList : Fragment(), FilmAdapter.OnItemClickListener {
 
