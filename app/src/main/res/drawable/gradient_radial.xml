@@ -5,8 +5,8 @@
         <shape android:shape="rectangle">
             <gradient
                 android:angle="90"
-                android:startColor="#803B3B4D"
-                android:endColor="#80636375" />
+                android:startColor="@color/gradient_radial_stroke_startcolor"
+                android:endColor="@color/gradient_radial_stroke_endcolor" />
             <corners android:radius="8dp"/>
         </shape>
     </item>
@@ -23,9 +23,8 @@
                 android:type="radial"
                 android:gradientRadius="@dimen/indent_24"
                 android:angle="90"
-                android:startColor="#FD404056"
-                android:endColor="#222232" />
-
+                android:startColor="@color/gradient_radial_startcolor"
+                android:endColor="@color/gradient_radial_endcolor" />
         </shape>
     </item>
 </layer-list>

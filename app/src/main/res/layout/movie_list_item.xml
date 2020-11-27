@@ -51,7 +51,7 @@
         android:fontFamily="@font/roboto_black"
         android:text="137 min"
         android:textAllCaps="true"
-        android:textColor="#565665"
+        android:textColor="@color/duration_color"
         android:textSize="@dimen/size_8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_film_name"

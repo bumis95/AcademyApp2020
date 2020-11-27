@@ -11,5 +11,13 @@
     <color name="pink">#FF3466</color>
     <color name="grey">#6D6D80</color>
     <color name="grey_light">#D8D8D8</color>
+
+    <color name="duration_color">#565665</color>
+
     <color name="background">#191926</color>
+    <color name="gradient_linear_endcolor">#00191926</color>
+    <color name="gradient_radial_startcolor">#FD404056</color>
+    <color name="gradient_radial_endcolor">#222232</color>
+    <color name="gradient_radial_stroke_startcolor">#803B3B4D</color>
+    <color name="gradient_radial_stroke_endcolor">#80636375</color>
 </resources>
