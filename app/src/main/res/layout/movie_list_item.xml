@@ -98,7 +98,7 @@
         android:layout_marginBottom="@dimen/indent_2"
         android:fontFamily="@font/roboto_light"
         android:gravity="center_vertical"
-        android:text="@string/tag"
+        android:text="@string/film_tag_1"
         android:textColor="@color/pink"
         android:textSize="@dimen/size_8"
         app:layout_constraintBottom_toTopOf="@+id/tv_review"

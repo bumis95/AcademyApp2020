@@ -1,10 +1,18 @@
 <resources>
     <string name="app_name">AcademyApp2020</string>
-    <string name="name">Avengers: End Game</string>
+
+    <string name="film_title_1">Avengers: End Game</string>
+    <string name="film_title_2">Tenet</string>
+    <string name="film_title_3">Black Widow</string>
+    <string name="film_title_4">Wonder Woman 1984</string>
+    <string name="film_tag_1">Action, Adventure, Fantasy</string>
+    <string name="film_tag_2">Action, Sci-Fi, Thriller</string>
+    <string name="film_tag_3">Action, Adventure, Sci-Fi</string>
+    <string name="film_tag_4">Action, Adventure, Fantasy</string>
+
     <string name="back">Back</string>
     <string name="age">%1$s+</string>
     <string name="tools_age">13+</string>
-    <string name="tag">Action, Adventure, Fantasy</string>
     <string name="review">%1$s Reviews</string>
     <string name="tools_review">125 Reviews</string>
     <string name="duration">%1$s Min</string>
