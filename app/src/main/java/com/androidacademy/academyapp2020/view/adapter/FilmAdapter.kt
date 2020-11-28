@@ -74,17 +74,15 @@ class FilmAdapter(private val listener: OnItemClickListener) :
 
     override fun getItemCount(): Int = filmList.size
 
-
     inner class FilmHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(film: Film, listener: OnItemClickListener) {
             itemView.findViewById<TextView>(R.id.tv_age).text =
-                itemView.context.getString(R.string.age, film.pegi.toString())
+                itemView.context.getString(R.string.age, film.ageRate.toString())
             itemView.findViewById<ImageView>(R.id.iv_like).setImageResource(film.isLike)
             itemView.findViewById<ImageView>(R.id.iv_poster).setImageResource(film.imageUrl)
             itemView.findViewById<TextView>(R.id.tv_tag).text =
                 itemView.context.getText(film.tag)
-//            itemView.findViewById<TextView>(R.id.tv_age).text = film.pegi  rate
             itemView.findViewById<TextView>(R.id.tv_review).text =
                 itemView.context.getString(R.string.review, film.numberOfReviews.toString())
             itemView.findViewById<TextView>(R.id.tv_film_name).text =

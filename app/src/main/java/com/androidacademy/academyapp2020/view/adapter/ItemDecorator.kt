@@ -32,5 +32,4 @@ class ItemDecorator(
 
     private fun dip(context: Context, dp: Int) =
         (dp * (context.resources.displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt()
-
 }
