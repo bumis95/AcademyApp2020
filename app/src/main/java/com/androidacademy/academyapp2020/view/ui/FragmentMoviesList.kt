@@ -9,18 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.view.adapter.MovieAdapter
+import com.androidacademy.academyapp2020.databinding.FragmentMoviesListBinding
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
+import com.androidacademy.academyapp2020.view.adapter.MovieAdapter
 
 class FragmentMoviesList : Fragment(), MovieAdapter.OnItemClickListener {
 
     private val filmAdapter = MovieAdapter(this)
 
+    private var _binding: FragmentMoviesListBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_movies_list, container, false)
+    ): View {
+        _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,6 +43,11 @@ class FragmentMoviesList : Fragment(), MovieAdapter.OnItemClickListener {
             adapter = filmAdapter
             addItemDecoration(ItemDecorator(left = 6, right = 6, bottom = 6, top = 6))
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onItemClick() {

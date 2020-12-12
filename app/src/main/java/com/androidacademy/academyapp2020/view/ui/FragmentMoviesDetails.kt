@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
+import com.androidacademy.academyapp2020.databinding.FragmentMoviesDetailsBinding
 import com.androidacademy.academyapp2020.view.adapter.ActorAdapter
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 
@@ -16,11 +17,16 @@ class FragmentMoviesDetails : Fragment() {
 
     private val actorAdapter = ActorAdapter()
 
+    private var _binding: FragmentMoviesDetailsBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_movies_details, container, false)
+    ): View {
+        _binding = FragmentMoviesDetailsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,5 +41,10 @@ class FragmentMoviesDetails : Fragment() {
         view.findViewById<TextView>(R.id.tv_back).setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
