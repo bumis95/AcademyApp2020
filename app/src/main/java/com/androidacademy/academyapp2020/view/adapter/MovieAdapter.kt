@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.androidacademy.academyapp2020.data.model.Film
+import com.androidacademy.academyapp2020.data.model.Movie
 import com.androidacademy.academyapp2020.R
 
-class FilmAdapter(private val listener: OnItemClickListener) :
-    RecyclerView.Adapter<FilmAdapter.FilmHolder>() {
+class MovieAdapter(private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
 
     private val filmList = listOf(
-        Film(
+        Movie(
             13,
             R.drawable.ic_like_no,
             R.drawable.movie_1_poster,
@@ -23,7 +23,7 @@ class FilmAdapter(private val listener: OnItemClickListener) :
             R.string.film_title_1,
             137
         ),
-        Film(
+        Movie(
             16,
             R.drawable.ic_like_yes,
             R.drawable.movie_2_poster,
@@ -33,7 +33,7 @@ class FilmAdapter(private val listener: OnItemClickListener) :
             R.string.film_title_2,
             97
         ),
-        Film(
+        Movie(
             13,
             R.drawable.ic_like_no,
             R.drawable.movie_3_poster,
@@ -43,7 +43,7 @@ class FilmAdapter(private val listener: OnItemClickListener) :
             R.string.film_title_3,
             102
         ),
-        Film(
+        Movie(
             13,
             R.drawable.ic_like_no,
             R.drawable.movie_4_poster,
@@ -59,8 +59,8 @@ class FilmAdapter(private val listener: OnItemClickListener) :
         fun onItemClick()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmHolder =
-        FilmHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder =
+        MovieHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.view_holder_movie,
                 parent,
@@ -68,27 +68,27 @@ class FilmAdapter(private val listener: OnItemClickListener) :
             )
         )
 
-    override fun onBindViewHolder(holder: FilmHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.bind(filmList[position], listener)
     }
 
     override fun getItemCount(): Int = filmList.size
 
-    class FilmHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MovieHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(film: Film, listener: OnItemClickListener) {
+        fun bind(movie: Movie, listener: OnItemClickListener) {
             itemView.findViewById<TextView>(R.id.tv_age).text =
-                itemView.context.getString(R.string.age, film.ageRate.toString())
-            itemView.findViewById<ImageView>(R.id.iv_like).setImageResource(film.isLike)
-            itemView.findViewById<ImageView>(R.id.iv_poster).setImageResource(film.imageUrl)
+                itemView.context.getString(R.string.age, movie.ageRate.toString())
+            itemView.findViewById<ImageView>(R.id.iv_like).setImageResource(movie.isLike)
+            itemView.findViewById<ImageView>(R.id.iv_poster).setImageResource(movie.imageUrl)
             itemView.findViewById<TextView>(R.id.tv_tag).text =
-                itemView.context.getText(film.tag)
+                itemView.context.getText(movie.tag)
             itemView.findViewById<TextView>(R.id.tv_review).text =
-                itemView.context.getString(R.string.review, film.numberOfReviews.toString())
+                itemView.context.getString(R.string.review, movie.numberOfReviews.toString())
             itemView.findViewById<TextView>(R.id.tv_film_name).text =
-                itemView.context.getText(film.title)
+                itemView.context.getText(movie.title)
             itemView.findViewById<TextView>(R.id.tv_duration).text =
-                itemView.context.getString(R.string.duration, film.duration.toString())
+                itemView.context.getString(R.string.duration, movie.duration.toString())
             itemView.setOnClickListener { listener.onItemClick() }
         }
     }

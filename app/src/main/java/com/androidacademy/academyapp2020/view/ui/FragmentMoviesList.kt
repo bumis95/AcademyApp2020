@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.view.adapter.FilmAdapter
+import com.androidacademy.academyapp2020.view.adapter.MovieAdapter
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 
-class FragmentMoviesList : Fragment(), FilmAdapter.OnItemClickListener {
+class FragmentMoviesList : Fragment(), MovieAdapter.OnItemClickListener {
 
-    private val filmAdapter = FilmAdapter(this)
+    private val filmAdapter = MovieAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

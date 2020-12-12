@@ -36,7 +36,7 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ActorHolder>() {
     class ActorHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(actor: Actor) {
-            itemView.findViewById<ImageView>(R.id.iv_actor_photo).setImageResource(actor.imageUrl)
+            itemView.findViewById<ImageView>(R.id.iv_actor_photo).setImageResource(actor.picture)
             itemView.findViewById<TextView>(R.id.tv_actor_name).text =
                 itemView.context.getString(actor.name)
         }

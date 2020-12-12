@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.view.adapter.ActorAdapter
-import com.androidacademy.academyapp2020.view.adapter.FilmAdapter
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 
 class FragmentMoviesDetails : Fragment() {
