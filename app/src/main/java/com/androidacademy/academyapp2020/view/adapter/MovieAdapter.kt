@@ -3,64 +3,20 @@ package com.androidacademy.academyapp2020.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.androidacademy.academyapp2020.data.model.Movie
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.androidacademy.academyapp2020.R
+import com.androidacademy.academyapp2020.data.model.Movie
+import com.androidacademy.academyapp2020.databinding.ViewHolderMovieBinding
 
-class MovieAdapter(private val listener: OnItemClickListener) :
-    RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
+class MovieAdapter(
+    private val movieList: List<Movie>,
+    private val listener: OnItemClickListener
+) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    private val filmList = listOf(
-        Movie(
-            13,
-            R.drawable.ic_like_no,
-            R.drawable.movie_1_poster,
-            R.string.film_tag_1,
-            4,
-            125,
-            R.string.film_title_1,
-            137
-        ),
-        Movie(
-            16,
-            R.drawable.ic_like_yes,
-            R.drawable.movie_2_poster,
-            R.string.film_tag_2,
-            5,
-            98,
-            R.string.film_title_2,
-            97
-        ),
-        Movie(
-            13,
-            R.drawable.ic_like_no,
-            R.drawable.movie_3_poster,
-            R.string.film_tag_3,
-            4,
-            38,
-            R.string.film_title_3,
-            102
-        ),
-        Movie(
-            13,
-            R.drawable.ic_like_no,
-            R.drawable.movie_4_poster,
-            R.string.film_tag_4,
-            5,
-            74,
-            R.string.film_title_4,
-            120
-        ),
-    )
-
-    interface OnItemClickListener {
-        fun onItemClick()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder =
-        MovieHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
+        MovieViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.view_holder_movie,
                 parent,
@@ -68,28 +24,35 @@ class MovieAdapter(private val listener: OnItemClickListener) :
             )
         )
 
-    override fun onBindViewHolder(holder: MovieHolder, position: Int) {
-        holder.bind(filmList[position], listener)
+    override fun onBindViewHolder(viewHolder: MovieViewHolder, position: Int) {
+        viewHolder.bind(movieList[position], listener)
     }
 
-    override fun getItemCount(): Int = filmList.size
+    override fun getItemCount(): Int = movieList.size
 
-    class MovieHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        private val binding = ViewHolderMovieBinding.bind(view)
 
         fun bind(movie: Movie, listener: OnItemClickListener) {
-            itemView.findViewById<TextView>(R.id.tv_age).text =
-                itemView.context.getString(R.string.age, movie.ageRate.toString())
-            itemView.findViewById<ImageView>(R.id.iv_like).setImageResource(movie.isLike)
-            itemView.findViewById<ImageView>(R.id.iv_poster).setImageResource(movie.imageUrl)
-            itemView.findViewById<TextView>(R.id.tv_tag).text =
-                itemView.context.getText(movie.tag)
-            itemView.findViewById<TextView>(R.id.tv_review).text =
-                itemView.context.getString(R.string.review, movie.numberOfReviews.toString())
-            itemView.findViewById<TextView>(R.id.tv_film_name).text =
-                itemView.context.getText(movie.title)
-            itemView.findViewById<TextView>(R.id.tv_duration).text =
-                itemView.context.getString(R.string.duration, movie.duration.toString())
-            itemView.setOnClickListener { listener.onItemClick() }
+
+            binding.apply {
+                tvMovieTitle.text = movie.title
+//                 TODO make class loader
+                ivMoviePoster.load(movie.poster) {
+                    transformations(RoundedCornersTransformation(topLeft = 16f, topRight = 16f))
+                }
+                //stars
+                tvMovieNumberOfRatings.text = movie.numberOfRatings.toString()
+//                minage
+                tvMovieRuntime.text = movie.runtime.toString()
+//                tvMovieGenres.text = movie.genres.joinToString(separator = ", ")
+                itemView.setOnClickListener { listener.onItemClick() }
+            }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick()
     }
 }

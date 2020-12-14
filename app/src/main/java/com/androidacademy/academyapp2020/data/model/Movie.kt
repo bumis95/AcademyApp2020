@@ -3,13 +3,6 @@ package com.androidacademy.academyapp2020.data.model
 data class Movie(
     val id: Int,
     val title: String,
-//    val ageRate: Int,
-//    val isLike: Int,
-//    val imageUrl: Int,
-//    val tag: Int,
-//    val starRate: Int,
-//    val numberOfReviews: Int,
-//    val duration: Int,
     val overview: String,
     val poster: String,
     val backdrop: String,
