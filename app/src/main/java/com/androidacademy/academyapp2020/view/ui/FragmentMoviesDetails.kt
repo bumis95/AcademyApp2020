@@ -63,6 +63,7 @@ class FragmentMoviesDetails : Fragment() {
             tvTitle.text = movie?.title
             ivPreview.load(movie?.backdrop)
             tvMovieGenres.text = movie?.genres?.joinToString { it.name }
+            ratingBar.rating = movie?.ratings!! / 2f
             tvMovieNumberOfRatings.text = getString(R.string.review, movie?.numberOfRatings.toString())
             tvDescription.text = movie?.overview
         }
