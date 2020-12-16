@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/movie_1_poster" />
+        tools:srcCompat="@drawable/movie_poster" />
 
     <View
         android:id="@+id/view2"
@@ -36,13 +36,13 @@
         android:ellipsize="end"
         android:fontFamily="@font/roboto_black"
         android:maxLines="1"
-        android:text="Avengers: End Game"
         android:textColor="@color/white"
         android:textSize="@dimen/size_14"
         app:layout_constraintBottom_toTopOf="@+id/tv_movie_runtime"
         app:layout_constraintEnd_toEndOf="@+id/iv_movie_poster"
         app:layout_constraintStart_toStartOf="@+id/tv_movie_runtime"
-        app:layout_constraintTop_toBottomOf="@+id/iv_movie_poster" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_movie_poster"
+        tools:text="@string/tools_movie_title" />
 
     <TextView
         android:id="@+id/tv_movie_runtime"
@@ -51,12 +51,12 @@
         android:layout_marginStart="@dimen/indent_8"
         android:layout_marginBottom="@dimen/indent_8"
         android:fontFamily="@font/roboto_black"
-        android:text="137 min"
         android:textAllCaps="true"
         android:textColor="@color/duration_color"
         android:textSize="@dimen/size_8"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/tools_movie_runtime" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -99,11 +99,11 @@
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center_vertical"
-        android:text="@string/film_tag_1"
         android:textColor="@color/pink"
         android:textSize="@dimen/size_8"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar" />
+        app:layout_constraintStart_toStartOf="@+id/ratingBar"
+        tools:text="@string/tools_movie_genre" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -121,12 +121,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/roboto_black"
-        android:text="@string/tools_review"
         android:textAllCaps="true"
         android:textColor="@color/grey"
         android:textSize="@dimen/size_8"
         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
         app:layout_constraintStart_toEndOf="@+id/ratingBar"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+        app:layout_constraintTop_toTopOf="@+id/ratingBar"
+        tools:text="@string/tools_movie_number_of_ratings" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
