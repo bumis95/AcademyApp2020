@@ -19,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-class FragmentMoviesList : Fragment(), MovieAdapter.OnItemClickListener {
+class FragmentMoviesList : Fragment(), MovieAdapter.OnMovieClickListener {
 
     private var movieList = listOf<Movie>()
 
@@ -66,9 +66,9 @@ class FragmentMoviesList : Fragment(), MovieAdapter.OnItemClickListener {
         uiScope.cancel()
     }
 
-    override fun onItemClick() {
+    override fun onMovieClick(movie: Movie) {
         requireActivity().supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragment_container, FragmentMoviesDetails())
+            add(R.id.fragment_container, FragmentMoviesDetails.newInstance(movie))
             addToBackStack(null)
             commit()
         }
