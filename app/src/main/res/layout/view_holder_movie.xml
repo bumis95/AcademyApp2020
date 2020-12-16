@@ -96,85 +96,37 @@
         android:id="@+id/tv_movie_genres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/indent_2"
+        android:layout_marginBottom="4dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center_vertical"
         android:text="@string/film_tag_1"
         android:textColor="@color/pink"
         android:textSize="@dimen/size_8"
-        app:layout_constraintBottom_toTopOf="@+id/tv_movie_number_of_ratings"
-        app:layout_constraintStart_toStartOf="@+id/iv_star_1" />
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar" />
 
-    <ImageView
-        android:id="@+id/iv_star_1"
-        android:layout_width="@dimen/size_8"
-        android:layout_height="@dimen/size_8"
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/StarRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/indent_8"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_star_2"
-        app:layout_constraintEnd_toStartOf="@+id/iv_star_2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_star_2"
-        app:srcCompat="@drawable/ic_star_on" />
-
-    <ImageView
-        android:id="@+id/iv_star_2"
-        android:layout_width="@dimen/size_8"
-        android:layout_height="@dimen/size_8"
-        android:layout_marginStart="@dimen/indent_2"
-        android:layout_marginEnd="@dimen/indent_2"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_star_3"
-        app:layout_constraintEnd_toStartOf="@+id/iv_star_3"
-        app:layout_constraintStart_toEndOf="@+id/iv_star_1"
-        app:layout_constraintTop_toTopOf="@+id/iv_star_3"
-        app:srcCompat="@drawable/ic_star_on" />
-
-    <ImageView
-        android:id="@+id/iv_star_3"
-        android:layout_width="@dimen/size_8"
-        android:layout_height="@dimen/size_8"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_star_4"
-        app:layout_constraintEnd_toStartOf="@+id/iv_star_4"
-        app:layout_constraintStart_toEndOf="@+id/iv_star_2"
-        app:layout_constraintTop_toTopOf="@+id/iv_star_4"
-        app:srcCompat="@drawable/ic_star_on" />
-
-    <ImageView
-        android:id="@+id/iv_star_4"
-        android:layout_width="@dimen/size_8"
-        android:layout_height="@dimen/size_8"
-        android:layout_marginStart="@dimen/indent_2"
-        android:layout_marginEnd="@dimen/indent_2"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_star_5"
-        app:layout_constraintEnd_toStartOf="@+id/iv_star_5"
-        app:layout_constraintStart_toEndOf="@+id/iv_star_3"
-        app:layout_constraintTop_toTopOf="@+id/iv_star_5"
-        app:srcCompat="@drawable/ic_star_on" />
-
-    <ImageView
-        android:id="@+id/iv_star_5"
-        android:layout_width="@dimen/size_8"
-        android:layout_height="@dimen/size_8"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_movie_number_of_ratings"
-        app:layout_constraintEnd_toStartOf="@+id/tv_movie_number_of_ratings"
-        app:layout_constraintStart_toEndOf="@+id/iv_star_4"
-        app:layout_constraintTop_toTopOf="@+id/tv_movie_number_of_ratings"
-        app:srcCompat="@drawable/ic_star_off" />
+        android:layout_marginBottom="@dimen/indent_10"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_movie_poster"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_movie_number_of_ratings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/indent_6"
-        android:layout_marginBottom="@dimen/indent_8"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/roboto_black"
         android:text="@string/tools_review"
         android:textAllCaps="true"
         android:textColor="@color/grey"
         android:textSize="@dimen/size_8"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_movie_poster"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_star_5" />
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintStart_toEndOf="@+id/ratingBar"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

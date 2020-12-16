@@ -41,7 +41,7 @@ class MovieAdapter(
                 ivMoviePoster.load(movie.poster) {
                     transformations(RoundedCornersTransformation(topLeft = 16f, topRight = 16f))
                 }
-                //stars
+                ratingBar.rating = movie.ratings / 2f
                 tvMovieNumberOfRatings.text =
                     itemView.context.getString(R.string.review, movie.numberOfRatings.toString())
                 tvAge.text = itemView.context.getString(R.string.age, movie.minimumAge.toString())
