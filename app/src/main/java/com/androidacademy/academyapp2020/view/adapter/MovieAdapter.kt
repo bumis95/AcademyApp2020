@@ -35,7 +35,6 @@ class MovieAdapter(
         private val binding = ViewHolderMovieBinding.bind(view)
 
         fun bind(movie: Movie, listener: OnMovieClickListener) {
-
             binding.apply {
                 tvMovieTitle.text = movie.title
 //                 TODO make class loader
@@ -43,9 +42,11 @@ class MovieAdapter(
                     transformations(RoundedCornersTransformation(topLeft = 16f, topRight = 16f))
                 }
                 //stars
-                tvMovieNumberOfRatings.text = itemView.context.getString(R.string.review, movie.numberOfRatings.toString())
-//                minage
-                tvMovieRuntime.text = itemView.context.getString(R.string.duration, movie.runtime.toString())
+                tvMovieNumberOfRatings.text =
+                    itemView.context.getString(R.string.review, movie.numberOfRatings.toString())
+                tvAge.text = itemView.context.getString(R.string.age, movie.minimumAge.toString())
+                tvMovieRuntime.text =
+                    itemView.context.getString(R.string.duration, movie.runtime.toString())
                 tvMovieGenres.text = movie.genres.joinToString { it.name }
                 itemView.setOnClickListener { listener.onMovieClick(movie) }
             }
