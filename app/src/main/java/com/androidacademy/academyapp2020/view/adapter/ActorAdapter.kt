@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Actor
 import com.androidacademy.academyapp2020.databinding.ViewHolderActorBinding
@@ -35,7 +36,9 @@ class ActorAdapter(
         fun bind(actor: Actor) {
             binding.apply {
 //                TODO make class loader
-                ivActorPicture.load(actor.picture)
+                ivActorPicture.load(actor.picture) {
+                    transformations(RoundedCornersTransformation(16f))
+                }
                 tvActorName.text = actor.name
             }
         }
