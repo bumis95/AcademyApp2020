@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import coil.transform.RoundedCornersTransformation
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Actor
 import com.androidacademy.academyapp2020.databinding.ViewHolderActorBinding
+import com.androidacademy.academyapp2020.utils.loadActorPicture
 
 class ActorAdapter(
     private val actorList: List<Actor>
@@ -35,10 +34,8 @@ class ActorAdapter(
 
         fun bind(actor: Actor) {
             binding.apply {
-//                TODO make class loader
-                ivActorPicture.load(actor.picture) {
-                    transformations(RoundedCornersTransformation(16f))
-                }
+                // Coil load extension
+                ivActorPicture.loadActorPicture(actor.picture)
                 tvActorName.text = actor.name
             }
         }

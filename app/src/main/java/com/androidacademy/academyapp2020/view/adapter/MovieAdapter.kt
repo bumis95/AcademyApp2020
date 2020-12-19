@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import coil.transform.RoundedCornersTransformation
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
 import com.androidacademy.academyapp2020.databinding.ViewHolderMovieBinding
+import com.androidacademy.academyapp2020.utils.loadMoviePicture
 
 class MovieAdapter(
     private val movieList: List<Movie>,
@@ -37,10 +36,8 @@ class MovieAdapter(
         fun bind(movie: Movie, listener: OnMovieClickListener) {
             binding.apply {
                 tvMovieTitle.text = movie.title
-//                 TODO make class loader
-                ivMoviePoster.load(movie.poster) {
-                    transformations(RoundedCornersTransformation(topLeft = 16f, topRight = 16f))
-                }
+                // Coil load extension
+                ivMoviePoster.loadMoviePicture(movie.poster)
                 ratingBar.rating = movie.ratings / 2f
                 tvMovieNumberOfRatings.text =
                     itemView.context.getString(R.string.review, movie.numberOfRatings.toString())
