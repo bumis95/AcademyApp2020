@@ -19,7 +19,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/indent_6"
-        android:textAppearance="@style/actors_name"
+        android:textAppearance="@style/actor_name"
         app:layout_constraintEnd_toEndOf="@+id/iv_actor_picture"
         app:layout_constraintStart_toStartOf="@+id/iv_actor_picture"
         app:layout_constraintTop_toBottomOf="@+id/iv_actor_picture"
