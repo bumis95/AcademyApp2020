@@ -60,6 +60,7 @@ class FragmentMoviesDetails : Fragment() {
 
     private fun initViews() {
         binding.apply {
+            if(movie?.actors.isNullOrEmpty()) tvMovieDetailsCast.visibility = View.GONE
             tvMovieDetailsAge.text = getString(R.string.age, movie?.minimumAge.toString())
             tvMovieDetailsTitle.text = movie?.title
             ivMovieDetailsBackdrop.loadMovieBackdrop(movie?.backdrop)
