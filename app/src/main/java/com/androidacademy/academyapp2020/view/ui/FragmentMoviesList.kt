@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
 import com.androidacademy.academyapp2020.data.model.loadMovies
@@ -21,7 +20,7 @@ import kotlinx.coroutines.launch
 
 class FragmentMoviesList : Fragment(), MovieAdapter.OnMovieClickListener {
 
-    private var movieList = listOf<Movie>()
+    private val movieAdapter = MovieAdapter(this)
 
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
@@ -39,21 +38,8 @@ class FragmentMoviesList : Fragment(), MovieAdapter.OnMovieClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<RecyclerView>(R.id.rv_movies).apply {
-            when (resources.configuration.orientation) {
-                Configuration.ORIENTATION_LANDSCAPE -> {
-                    layoutManager = GridLayoutManager(context, 4)
-                }
-                Configuration.ORIENTATION_PORTRAIT -> {
-                    layoutManager = GridLayoutManager(context, 2)
-                }
-            }
-            uiScope.launch {
-                movieList = loadMovies(view.context)
-                adapter = MovieAdapter(movieList, this@FragmentMoviesList)
-                addItemDecoration(ItemDecorator(left = 6, right = 6, bottom = 6, top = 6))
-            }
-        }
+        initMovieRecyclerView()
+        loadMovies()
     }
 
     override fun onDestroyView() {
@@ -64,6 +50,28 @@ class FragmentMoviesList : Fragment(), MovieAdapter.OnMovieClickListener {
     override fun onDestroy() {
         super.onDestroy()
         uiScope.cancel()
+    }
+
+    private fun initMovieRecyclerView() {
+        binding.rvMovies.apply {
+            when (resources.configuration.orientation) {
+                Configuration.ORIENTATION_LANDSCAPE -> {
+                    layoutManager = GridLayoutManager(context, 4)
+                }
+                Configuration.ORIENTATION_PORTRAIT -> {
+                    layoutManager = GridLayoutManager(context, 2)
+                }
+            }
+            adapter = movieAdapter
+            addItemDecoration(ItemDecorator(left = 6, right = 6, bottom = 6, top = 6))
+        }
+    }
+
+    private fun loadMovies() {
+        uiScope.launch {
+            val movieList = loadMovies(requireContext())
+            movieAdapter.submitList(movieList)
+        }
     }
 
     override fun onMovieClick(movie: Movie) {
