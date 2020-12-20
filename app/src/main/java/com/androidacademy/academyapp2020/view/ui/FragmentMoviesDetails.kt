@@ -60,15 +60,17 @@ class FragmentMoviesDetails : Fragment() {
 
     private fun initViews() {
         binding.apply {
-            if(movie?.actors.isNullOrEmpty()) tvMovieDetailsCast.visibility = View.GONE
-            tvMovieDetailsAge.text = getString(R.string.age, movie?.minimumAge.toString())
-            tvMovieDetailsTitle.text = movie?.title
-            ivMovieDetailsBackdrop.loadMovieBackdrop(movie?.backdrop)
-            tvMovieDetailsGenres.text = movie?.genres?.joinToString { it.name }
-            rbMovieDetails.rating = movie?.ratings!! / 2f
-            tvMovieDetailsNumberOfRatings.text =
-                getString(R.string.review, movie?.numberOfRatings.toString())
-            tvMovieDetailsOverview.text = movie?.overview
+            movie?.let {
+                if(it.actors.isEmpty()) tvMovieDetailsCast.visibility = View.GONE
+                tvMovieDetailsAge.text = getString(R.string.age, it.minimumAge.toString())
+                tvMovieDetailsTitle.text = it.title
+                ivMovieDetailsBackdrop.loadMovieBackdrop(it.backdrop)
+                tvMovieDetailsGenres.text = it.genres.joinToString { genre -> genre.name }
+                rbMovieDetails.rating = it.ratings / 2f
+                tvMovieDetailsNumberOfRatings.text =
+                    getString(R.string.review, it.numberOfRatings.toString())
+                tvMovieDetailsOverview.text = it.overview
+            }
         }
     }
 
