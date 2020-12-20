@@ -5,10 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
 import com.androidacademy.academyapp2020.databinding.FragmentMoviesDetailsBinding
@@ -42,15 +40,8 @@ class FragmentMoviesDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
-        view.findViewById<RecyclerView>(R.id.rv_actors).apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ActorAdapter(movie!!.actors)
-            addItemDecoration(ItemDecorator(left = 4, right = 4))
-        }
-        view.findViewById<TextView>(R.id.tv_movie_details_back).setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-        }
+        initMovieViews()
+        initActorRecyclerView()
     }
 
     override fun onDestroyView() {
@@ -58,10 +49,10 @@ class FragmentMoviesDetails : Fragment() {
         _binding = null
     }
 
-    private fun initViews() {
+    private fun initMovieViews() {
         binding.apply {
             movie?.let {
-                if(it.actors.isEmpty()) tvMovieDetailsCast.visibility = View.GONE
+                if (it.actors.isEmpty()) tvMovieDetailsCast.visibility = View.GONE
                 tvMovieDetailsAge.text = getString(R.string.age, it.minimumAge.toString())
                 tvMovieDetailsTitle.text = it.title
                 ivMovieDetailsBackdrop.loadMovieBackdrop(it.backdrop)
@@ -70,6 +61,20 @@ class FragmentMoviesDetails : Fragment() {
                 tvMovieDetailsNumberOfRatings.text =
                     getString(R.string.review, it.numberOfRatings.toString())
                 tvMovieDetailsOverview.text = it.overview
+            }
+        }
+    }
+
+    private fun initActorRecyclerView() {
+        binding.apply {
+            rvActors.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = ActorAdapter(movie!!.actors)
+                addItemDecoration(ItemDecorator(left = 4, right = 4))
+                setHasFixedSize(true)
+            }
+            tvMovieDetailsBack.setOnClickListener {
+                requireActivity().supportFragmentManager.popBackStack()
             }
         }
     }
