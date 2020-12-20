@@ -18,7 +18,7 @@
         tools:srcCompat="@drawable/movie_poster" />
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/v_movie_gradient"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/gradient_linear"
@@ -59,7 +59,7 @@
         tools:text="@string/tools_movie_runtime" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_movie_age_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/indent_8"
@@ -69,27 +69,27 @@
         app:srcCompat="@drawable/ic_rectangle_without_border" />
 
     <TextView
-        android:id="@+id/tv_age"
+        android:id="@+id/tv_movie_age"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/roboto_black"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/size_12"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_movie_age_background"
+        app:layout_constraintEnd_toEndOf="@+id/iv_movie_age_background"
+        app:layout_constraintStart_toStartOf="@+id/iv_movie_age_background"
+        app:layout_constraintTop_toTopOf="@+id/iv_movie_age_background"
         tools:text="13+" />
 
     <ImageView
-        android:id="@+id/iv_like"
+        android:id="@+id/iv_movie_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/indent_8"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_movie_age_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/iv_movie_age_background"
         app:srcCompat="@drawable/ic_like_no" />
 
     <TextView
@@ -101,13 +101,13 @@
         android:gravity="center_vertical"
         android:textColor="@color/pink"
         android:textSize="@dimen/size_8"
-        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+        app:layout_constraintBottom_toTopOf="@+id/rb_movie"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar"
+        app:layout_constraintStart_toStartOf="@+id/rb_movie"
         tools:text="@string/tools_movie_genre" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/rb_movie"
         style="@style/StarRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -129,9 +129,9 @@
         android:textAllCaps="true"
         android:textColor="@color/grey"
         android:textSize="@dimen/size_8"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintStart_toEndOf="@+id/ratingBar"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar"
+        app:layout_constraintBottom_toBottomOf="@+id/rb_movie"
+        app:layout_constraintStart_toEndOf="@+id/rb_movie"
+        app:layout_constraintTop_toTopOf="@+id/rb_movie"
         tools:text="@string/tools_movie_number_of_ratings" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

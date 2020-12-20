@@ -13,7 +13,7 @@
         tools:context=".MovieDetailsActivity">
 
         <ImageView
-            android:id="@+id/iv_preview"
+            android:id="@+id/iv_movie_details_backdrop"
             android:layout_width="match_parent"
             android:layout_height="298dp"
             android:scaleType="centerCrop"
@@ -22,7 +22,7 @@
             app:srcCompat="@drawable/movie_backdrop" />
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/v_movie_details_gradient"
             android:layout_width="match_parent"
             android:layout_height="298dp"
             android:background="@drawable/gradient_linear"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_back"
+            android:id="@+id/iv_movie_details_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
@@ -40,7 +40,7 @@
             app:srcCompat="@drawable/ic_back" />
 
         <TextView
-            android:id="@+id/tv_back"
+            android:id="@+id/tv_movie_details_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/indent_8"
@@ -50,21 +50,21 @@
             android:text="@string/back"
             android:textColor="@color/white"
             android:textSize="@dimen/size_12"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_back"
-            app:layout_constraintStart_toEndOf="@+id/iv_back"
-            app:layout_constraintTop_toTopOf="@+id/iv_back" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_movie_details_back"
+            app:layout_constraintStart_toEndOf="@+id/iv_movie_details_back"
+            app:layout_constraintTop_toTopOf="@+id/iv_movie_details_back" />
 
         <ImageView
-            android:id="@+id/iv_rectangle"
+            android:id="@+id/iv_movie_details_age_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/indent_8"
-            app:layout_constraintBottom_toTopOf="@+id/tv_title"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintBottom_toTopOf="@+id/tv_movie_details_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_movie_details_title"
             app:srcCompat="@drawable/ic_rectangle_with_border" />
 
         <TextView
-            android:id="@+id/tv_pegi"
+            android:id="@+id/tv_movie_details_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indent_4"
@@ -72,14 +72,14 @@
             android:fontFamily="@font/roboto_black"
             android:textColor="@color/white"
             android:textSize="@dimen/size_12"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_rectangle"
-            app:layout_constraintEnd_toEndOf="@+id/iv_rectangle"
-            app:layout_constraintStart_toStartOf="@+id/iv_rectangle"
-            app:layout_constraintTop_toTopOf="@+id/iv_rectangle"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_movie_details_age_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_movie_details_age_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_movie_details_age_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_movie_details_age_background"
             tools:text="@string/tools_movie_minimum_age" />
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_movie_details_title"
             android:layout_width="343dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/indent_16"
@@ -93,7 +93,7 @@
             tools:text="@string/tools_movie_title" />
 
         <TextView
-            android:id="@+id/tv_movie_genres"
+            android:id="@+id/tv_movie_details_genres"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indent_4"
@@ -101,21 +101,21 @@
             android:gravity="center_vertical"
             android:textColor="@color/pink"
             android:textSize="@dimen/size_14"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_movie_details_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_details_title"
             tools:text="@string/tools_movie_genre" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/rb_movie_details"
             style="@style/StarRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indent_8"
-            app:layout_constraintStart_toStartOf="@+id/tv_movie_genres"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie_genres" />
+            app:layout_constraintStart_toStartOf="@+id/tv_movie_details_genres"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_details_genres" />
 
         <TextView
-            android:id="@+id/tv_movie_number_of_ratings"
+            android:id="@+id/tv_movie_details_number_of_ratings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/indent_8"
@@ -123,13 +123,13 @@
             android:textAllCaps="true"
             android:textColor="@color/grey"
             android:textSize="@dimen/size_14"
-            app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-            app:layout_constraintStart_toEndOf="@+id/ratingBar"
-            app:layout_constraintTop_toTopOf="@+id/ratingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/rb_movie_details"
+            app:layout_constraintStart_toEndOf="@+id/rb_movie_details"
+            app:layout_constraintTop_toTopOf="@+id/rb_movie_details"
             tools:text="@string/tools_movie_number_of_ratings" />
 
         <TextView
-            android:id="@+id/tv_storyline"
+            android:id="@+id/tv_movie_details_storyline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indent_28"
@@ -138,11 +138,11 @@
             android:textAppearance="@style/gradient"
             android:textColor="#ECECEC"
             android:textSize="@dimen/size_14"
-            app:layout_constraintStart_toStartOf="@+id/ratingBar"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+            app:layout_constraintStart_toStartOf="@+id/rb_movie_details"
+            app:layout_constraintTop_toBottomOf="@+id/rb_movie_details" />
 
         <TextView
-            android:id="@+id/tv_description"
+            android:id="@+id/tv_movie_details_overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indent_4"
@@ -153,12 +153,12 @@
             android:textColor="@color/white"
             android:textSize="@dimen/size_14"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_storyline"
-            app:layout_constraintTop_toBottomOf="@+id/tv_storyline"
+            app:layout_constraintStart_toStartOf="@id/tv_movie_details_storyline"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_details_storyline"
             tools:text="@string/tools_movie_overview" />
 
         <TextView
-            android:id="@+id/tv_cast"
+            android:id="@+id/tv_movie_details_cast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indent_24"
@@ -169,8 +169,8 @@
             android:textAppearance="@style/gradient"
             android:textColor="#ECECEC"
             android:textSize="@dimen/size_14"
-            app:layout_constraintStart_toStartOf="@+id/tv_description"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+            app:layout_constraintStart_toStartOf="@+id/tv_movie_details_overview"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_details_overview" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_actors"
@@ -181,7 +181,7 @@
             android:layout_marginEnd="@dimen/indent_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_cast"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie_details_cast"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/view_holder_actor"
             tools:orientation="horizontal" />

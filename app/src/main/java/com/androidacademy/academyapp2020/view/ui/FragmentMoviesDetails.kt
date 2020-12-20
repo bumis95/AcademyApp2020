@@ -9,10 +9,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
 import com.androidacademy.academyapp2020.databinding.FragmentMoviesDetailsBinding
+import com.androidacademy.academyapp2020.utils.loadMovieBackdrop
 import com.androidacademy.academyapp2020.view.adapter.ActorAdapter
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 
@@ -48,7 +48,7 @@ class FragmentMoviesDetails : Fragment() {
             adapter = ActorAdapter(movie!!.actors)
             addItemDecoration(ItemDecorator(left = 4, right = 4))
         }
-        view.findViewById<TextView>(R.id.tv_back).setOnClickListener {
+        view.findViewById<TextView>(R.id.tv_movie_details_back).setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
@@ -60,12 +60,13 @@ class FragmentMoviesDetails : Fragment() {
 
     private fun initViews() {
         binding.apply {
-            tvTitle.text = movie?.title
-            ivPreview.load(movie?.backdrop)
-            tvMovieGenres.text = movie?.genres?.joinToString { it.name }
-            ratingBar.rating = movie?.ratings!! / 2f
-            tvMovieNumberOfRatings.text = getString(R.string.review, movie?.numberOfRatings.toString())
-            tvDescription.text = movie?.overview
+            tvMovieDetailsTitle.text = movie?.title
+            ivMovieDetailsBackdrop.loadMovieBackdrop(movie?.backdrop)
+            tvMovieDetailsGenres.text = movie?.genres?.joinToString { it.name }
+            rbMovieDetails.rating = movie?.ratings!! / 2f
+            tvMovieDetailsNumberOfRatings.text =
+                getString(R.string.review, movie?.numberOfRatings.toString())
+            tvMovieDetailsOverview.text = movie?.overview
         }
     }
 

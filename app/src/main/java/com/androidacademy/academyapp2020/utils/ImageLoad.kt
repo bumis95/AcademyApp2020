@@ -22,3 +22,7 @@ fun ImageView.loadMoviePicture(url: String) {
         )
     }
 }
+
+fun ImageView.loadMovieBackdrop(url: String?) {
+    this.load(url)
+}
