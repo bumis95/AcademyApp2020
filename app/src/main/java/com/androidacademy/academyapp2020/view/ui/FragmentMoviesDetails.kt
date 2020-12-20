@@ -60,6 +60,7 @@ class FragmentMoviesDetails : Fragment() {
 
     private fun initViews() {
         binding.apply {
+            tvMovieDetailsAge.text = getString(R.string.age, movie?.minimumAge.toString())
             tvMovieDetailsTitle.text = movie?.title
             ivMovieDetailsBackdrop.loadMovieBackdrop(movie?.backdrop)
             tvMovieDetailsGenres.text = movie?.genres?.joinToString { it.name }
