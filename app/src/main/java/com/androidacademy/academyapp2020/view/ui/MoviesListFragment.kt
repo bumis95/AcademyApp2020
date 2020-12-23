@@ -18,7 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-class FragmentMoviesList : Fragment(), MovieAdapter.OnMovieClickListener {
+class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
 
     private val movieAdapter = MovieAdapter(this)
 
@@ -76,7 +76,7 @@ class FragmentMoviesList : Fragment(), MovieAdapter.OnMovieClickListener {
 
     override fun onMovieClick(movie: Movie) {
         requireActivity().supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragment_container, FragmentMoviesDetails.newInstance(movie))
+            add(R.id.fragment_container, MovieDetailsFragment.newInstance(movie))
             addToBackStack(null)
             commit()
         }

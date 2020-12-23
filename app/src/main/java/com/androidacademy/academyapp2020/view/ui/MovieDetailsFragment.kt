@@ -9,18 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
-import com.androidacademy.academyapp2020.databinding.FragmentMoviesDetailsBinding
+import com.androidacademy.academyapp2020.databinding.FragmentMovieDetailsBinding
 import com.androidacademy.academyapp2020.utils.loadMovieBackdrop
 import com.androidacademy.academyapp2020.view.adapter.ActorAdapter
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 
 const val ARG_MOVIE = "movie_param"
 
-class FragmentMoviesDetails : Fragment() {
+class MovieDetailsFragment : Fragment() {
 
     private var movie: Movie? = null
 
-    private var _binding: FragmentMoviesDetailsBinding? = null
+    private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class FragmentMoviesDetails : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMoviesDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -82,7 +82,7 @@ class FragmentMoviesDetails : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(movie: Movie) =
-            FragmentMoviesDetails().apply {
+            MovieDetailsFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_MOVIE, movie)
                 }
