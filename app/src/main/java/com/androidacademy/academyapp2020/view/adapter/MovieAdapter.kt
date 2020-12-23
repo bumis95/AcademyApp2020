@@ -3,6 +3,7 @@ package com.androidacademy.academyapp2020.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
@@ -52,4 +53,13 @@ class MovieAdapter(
     interface OnMovieClickListener {
         fun onMovieClick(movie: Movie)
     }
+}
+
+private class MoviesCallback : DiffUtil.ItemCallback<Movie>() {
+
+    override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean =
+        oldItem.title == newItem.title
+
+    override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean =
+        oldItem == newItem
 }
