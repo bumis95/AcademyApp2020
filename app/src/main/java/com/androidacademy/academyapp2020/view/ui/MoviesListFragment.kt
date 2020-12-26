@@ -10,13 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
+import com.androidacademy.academyapp2020.data.repository.LocalRepository
 import com.androidacademy.academyapp2020.databinding.FragmentMoviesListBinding
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 import com.androidacademy.academyapp2020.view.adapter.MovieAdapter
+import com.androidacademy.academyapp2020.viewmodel.MoviesListViewModel
+import com.androidacademy.academyapp2020.viewmodel.ViewModelFactory
 
 class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
 
-    private val viewModel: MoviesListViewModel by viewModels()
+    private val repository = LocalRepository()
+    private val viewModel: MoviesListViewModel by viewModels { ViewModelFactory(repository) }
 
     private val movieAdapter = MovieAdapter(this)
 
@@ -36,7 +40,9 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         initMovieRecyclerView()
+
         viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateMovieAdapter)
+        viewModel.getMovies(requireContext())
     }
 
     override fun onDestroyView() {
@@ -63,9 +69,9 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
         movieAdapter.submitList(movies)
     }
 
-    override fun onMovieClick(movie: Movie) {
+    override fun onMovieClick(movieId: Int) {
         requireActivity().supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragment_container, MovieDetailsFragment.newInstance(movie))
+            add(R.id.fragment_container, MovieDetailsFragment.newInstance(movieId))
             addToBackStack(null)
             commit()
         }

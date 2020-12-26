@@ -45,13 +45,13 @@ class MovieAdapter(
                 tvMovieRuntime.text =
                     itemView.context.getString(R.string.duration, movie.runtime.toString())
                 tvMovieGenres.text = movie.genres.joinToString { it.name }
-                itemView.setOnClickListener { listener.onMovieClick(movie) }
+                itemView.setOnClickListener { listener.onMovieClick(movie.id) }
             }
         }
     }
 
     interface OnMovieClickListener {
-        fun onMovieClick(movie: Movie)
+        fun onMovieClick(movieId: Int)
     }
 }
 

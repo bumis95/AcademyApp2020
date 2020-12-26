@@ -1,32 +1,37 @@
 package com.androidacademy.academyapp2020.view.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
+import com.androidacademy.academyapp2020.data.repository.LocalRepository
 import com.androidacademy.academyapp2020.databinding.FragmentMovieDetailsBinding
 import com.androidacademy.academyapp2020.utils.loadMovieBackdrop
 import com.androidacademy.academyapp2020.view.adapter.ActorAdapter
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
+import com.androidacademy.academyapp2020.viewmodel.MovieDetailsViewModel
+import com.androidacademy.academyapp2020.viewmodel.ViewModelFactory
 
 const val ARG_MOVIE = "movie_param"
 
 class MovieDetailsFragment : Fragment() {
 
-    private var movie: Movie? = null
+    private val repository = LocalRepository()
+    private val viewModel: MovieDetailsViewModel by viewModels { ViewModelFactory(repository) }
+
+    private var movieId: Int? = null
 
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movie = arguments?.getParcelable(ARG_MOVIE)
-        Log.i("FragmentMoviesList", movie.toString())
+        movieId = arguments?.getInt(ARG_MOVIE)
     }
 
     override fun onCreateView(
@@ -40,8 +45,8 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initMovieViews()
-        initActorRecyclerView()
+        viewModel.movie.observe(viewLifecycleOwner, this::initMovieViews)
+        viewModel.getMovie(requireContext(), movieId)
     }
 
     override fun onDestroyView() {
@@ -49,7 +54,7 @@ class MovieDetailsFragment : Fragment() {
         _binding = null
     }
 
-    private fun initMovieViews() {
+    private fun initMovieViews(movie: Movie?) {
         binding.apply {
             movie?.let {
                 if (it.actors.isEmpty()) tvMovieDetailsCast.visibility = View.GONE
@@ -62,11 +67,6 @@ class MovieDetailsFragment : Fragment() {
                     getString(R.string.review, it.numberOfRatings.toString())
                 tvMovieDetailsOverview.text = it.overview
             }
-        }
-    }
-
-    private fun initActorRecyclerView() {
-        binding.apply {
             rvActors.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = ActorAdapter(movie!!.actors)
@@ -81,10 +81,10 @@ class MovieDetailsFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(movie: Movie) =
+        fun newInstance(movieId: Int) =
             MovieDetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(ARG_MOVIE, movie)
+                    putInt(ARG_MOVIE, movieId)
                 }
             }
     }
