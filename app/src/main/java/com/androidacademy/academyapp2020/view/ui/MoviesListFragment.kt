@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,6 +13,7 @@ import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
 import com.androidacademy.academyapp2020.data.repository.LocalRepository
 import com.androidacademy.academyapp2020.databinding.FragmentMoviesListBinding
+import com.androidacademy.academyapp2020.utils.LoadStatus
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 import com.androidacademy.academyapp2020.view.adapter.MovieAdapter
 import com.androidacademy.academyapp2020.viewmodel.MoviesListViewModel
@@ -33,16 +35,13 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         initMovieRecyclerView()
-
-        viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateMovieAdapter)
+        viewModel.moviesList.observe(viewLifecycleOwner, this::updateMovieAdapter)
+        viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
         viewModel.getMovies(requireContext())
+
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -67,6 +66,18 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
 
     private fun updateMovieAdapter(movies: List<Movie>) {
         movieAdapter.submitList(movies)
+    }
+
+    private fun updateProgressBar(status: LoadStatus) {
+        when (status) {
+            is LoadStatus.Success -> showProgressBar(false)
+            is LoadStatus.Loading -> showProgressBar(true)
+            is LoadStatus.Error -> showProgressBar(false)
+        }
+    }
+
+    private fun showProgressBar(loading: Boolean) {
+        binding.pbMoviesList.isVisible = loading
     }
 
     override fun onMovieClick(movieId: Int) {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.model.Movie
 import com.androidacademy.academyapp2020.data.repository.LocalRepository
 import com.androidacademy.academyapp2020.databinding.FragmentMovieDetailsBinding
+import com.androidacademy.academyapp2020.utils.LoadStatus
 import com.androidacademy.academyapp2020.utils.loadMovieBackdrop
 import com.androidacademy.academyapp2020.view.adapter.ActorAdapter
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
@@ -40,13 +42,12 @@ class MovieDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         viewModel.movie.observe(viewLifecycleOwner, this::initMovieViews)
+        viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
         viewModel.getMovie(requireContext(), movieId)
+
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -77,6 +78,18 @@ class MovieDetailsFragment : Fragment() {
                 requireActivity().supportFragmentManager.popBackStack()
             }
         }
+    }
+
+    private fun updateProgressBar(status: LoadStatus) {
+        when (status) {
+            is LoadStatus.Success -> showProgressBar(false)
+            is LoadStatus.Loading -> showProgressBar(true)
+            is LoadStatus.Error -> showProgressBar(false)
+        }
+    }
+
+    private fun showProgressBar(loading: Boolean) {
+        binding.pbMovieDetails.isVisible = loading
     }
 
     companion object {
