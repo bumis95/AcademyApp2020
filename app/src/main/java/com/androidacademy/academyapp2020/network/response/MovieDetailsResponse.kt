@@ -31,7 +31,9 @@ data class MovieDetailsResponse(
             minimumAge = if (adult) 16 else 13,
             runtime = runtime,
             genres = genres,
-            actors = actors.castList.map { it.copy(picture = "$IMAGE_BASE_URL$ACTOR_SIZE${it.picture}") }
+            actors = actors.castList
+                .filter { it.picture.isNotEmpty() }
+                .map { it.copy(picture = "$IMAGE_BASE_URL$ACTOR_SIZE${it.picture}") }
         )
 
     companion object {
