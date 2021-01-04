@@ -4,6 +4,8 @@ import android.util.Log
 import com.androidacademy.academyapp2020.data.entity.Movie
 import com.androidacademy.academyapp2020.network.RetrofitModule
 import com.androidacademy.academyapp2020.network.response.MovieId
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 private const val REPOSITORY_TAG = "repository_tag"
 
@@ -11,7 +13,7 @@ class MovieRepositoryImpl : MovieRepository {
 
     private val movieApiService = RetrofitModule.movieApiService
 
-    override suspend fun loadMoviesList(): List<Movie> {
+    override suspend fun loadMoviesList(): List<Movie> = withContext(Dispatchers.IO) {
         val idsList: List<MovieId>
         val moviesList = mutableListOf<Movie>()
         try {
@@ -24,10 +26,10 @@ class MovieRepositoryImpl : MovieRepository {
         } catch (e: Exception) {
             Log.i(REPOSITORY_TAG, e.toString())
         }
-        return moviesList
+        return@withContext moviesList
     }
 
-    override suspend fun loadMovieDetails(movieId: Int): Movie {
-        return movieApiService.getMovieDetailsById(movieId).toMovie()
+    override suspend fun loadMovieDetails(movieId: Int): Movie = withContext(Dispatchers.IO) {
+        return@withContext movieApiService.getMovieDetailsById(movieId).toMovie()
     }
 }
