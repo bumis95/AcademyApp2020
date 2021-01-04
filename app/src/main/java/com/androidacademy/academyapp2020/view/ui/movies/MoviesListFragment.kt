@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020.view.ui
+package com.androidacademy.academyapp2020.view.ui.movies
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -10,18 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.data.model.Movie
-import com.androidacademy.academyapp2020.data.repository.LocalRepository
+import com.androidacademy.academyapp2020.data.entity.Movie
+import com.androidacademy.academyapp2020.data.repository.MovieRepositoryImpl
 import com.androidacademy.academyapp2020.databinding.FragmentMoviesListBinding
 import com.androidacademy.academyapp2020.utils.LoadStatus
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 import com.androidacademy.academyapp2020.view.adapter.MovieAdapter
-import com.androidacademy.academyapp2020.viewmodel.MoviesListViewModel
+import com.androidacademy.academyapp2020.view.ui.details.MovieDetailsFragment
 import com.androidacademy.academyapp2020.viewmodel.ViewModelFactory
 
 class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
 
-    private val repository = LocalRepository()
+    private val repository = MovieRepositoryImpl()
     private val viewModel: MoviesListViewModel by viewModels { ViewModelFactory(repository) }
 
     private val movieAdapter = MovieAdapter(this)
@@ -37,9 +37,10 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
 
         initMovieRecyclerView()
+        // TODO extract
         viewModel.moviesList.observe(viewLifecycleOwner, this::updateMovieAdapter)
         viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
-        viewModel.getMovies(requireContext())
+        viewModel.getMovies()
 
         return binding.root
     }
@@ -64,7 +65,7 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
         }
     }
 
-    private fun updateMovieAdapter(movies: List<Movie>) {
+    private fun updateMovieAdapter(movies: List<Movie>?) {
         movieAdapter.submitList(movies)
     }
 

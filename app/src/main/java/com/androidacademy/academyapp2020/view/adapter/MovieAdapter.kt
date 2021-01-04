@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.data.model.Movie
+import com.androidacademy.academyapp2020.data.entity.Movie
 import com.androidacademy.academyapp2020.databinding.ViewHolderMovieBinding
 import com.androidacademy.academyapp2020.utils.loadMoviePicture
 
