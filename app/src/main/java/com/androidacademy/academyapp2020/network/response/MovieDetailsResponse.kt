@@ -36,9 +36,9 @@ data class MovieDetailsResponse(
 
     companion object {
         private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/"
-        private const val BACKDROP_SIZE = "w1280/"
-        private const val POSTER_SIZE = "w342/"
-        private const val ACTOR_SIZE = "w185/"
+        private const val BACKDROP_SIZE = "w1280"
+        private const val POSTER_SIZE = "w342"
+        private const val ACTOR_SIZE = "w185"
     }
 }
 
