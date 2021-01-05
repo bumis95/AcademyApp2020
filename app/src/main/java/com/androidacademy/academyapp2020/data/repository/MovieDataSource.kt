@@ -4,13 +4,16 @@ import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.androidacademy.academyapp2020.data.entity.Movie
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MovieDataSource(
     private val movieRepository: MovieRepository,
-    private val scope: CoroutineScope,
 ) : PageKeyedDataSource<Int, Movie>() {
+
+    private val job = Job()
+    private val scope = CoroutineScope(Dispatchers.IO + job)
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -49,6 +52,6 @@ class MovieDataSource(
 
     override fun invalidate() {
         super.invalidate()
-        scope.cancel()
+        job.cancel()
     }
 }

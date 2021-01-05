@@ -3,7 +3,6 @@ package com.androidacademy.academyapp2020.view.ui.movies
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -33,7 +32,7 @@ class MoviesListViewModel(private val movieRepository: MovieRepository) : ViewMo
     private fun initializedPagedListBuilder(config: PagedList.Config): LivePagedListBuilder<Int, Movie> {
         val dataSourceFactory = object : DataSource.Factory<Int, Movie>() {
             override fun create(): DataSource<Int, Movie> {
-                return MovieDataSource(movieRepository, viewModelScope)
+                return MovieDataSource(movieRepository)
             }
         }
         return LivePagedListBuilder(dataSourceFactory, config)
