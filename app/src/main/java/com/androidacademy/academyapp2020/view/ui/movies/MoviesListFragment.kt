@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.entity.Movie
 import com.androidacademy.academyapp2020.data.repository.MovieRepositoryImpl
 import com.androidacademy.academyapp2020.databinding.FragmentMoviesListBinding
+import com.androidacademy.academyapp2020.network.RetrofitModule
 import com.androidacademy.academyapp2020.utils.LoadStatus
 import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
 import com.androidacademy.academyapp2020.view.adapter.MovieAdapter
@@ -21,7 +23,7 @@ import com.androidacademy.academyapp2020.viewmodel.ViewModelFactory
 
 class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
 
-    private val repository = MovieRepositoryImpl()
+    private val repository = MovieRepositoryImpl(RetrofitModule.movieApiService)
     private val viewModel: MoviesListViewModel by viewModels { ViewModelFactory(repository) }
 
     private val movieAdapter = MovieAdapter(this)
@@ -38,9 +40,9 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
 
         initMovieRecyclerView()
         // TODO extract
-        viewModel.moviesList.observe(viewLifecycleOwner, this::updateMovieAdapter)
+//        viewModel.moviesList.observe(viewLifecycleOwner, this::updateMovieAdapter)
         viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
-        viewModel.getMovies()
+        viewModel.getMovies().observe(viewLifecycleOwner, this::updateMovieAdapter)
 
         return binding.root
     }
@@ -65,7 +67,7 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
         }
     }
 
-    private fun updateMovieAdapter(movies: List<Movie>?) {
+    private fun updateMovieAdapter(movies: PagedList<Movie>?) {
         movieAdapter.submitList(movies)
     }
 

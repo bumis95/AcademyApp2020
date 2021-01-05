@@ -9,13 +9,13 @@ import kotlinx.serialization.Serializable
 data class MovieDetailsResponse(
     @SerialName("id") val id: Int,
     @SerialName("title") val title: String,
-    @SerialName("overview") val overview: String,
-    @SerialName("poster_path") val poster: String,
-    @SerialName("backdrop_path") val backdrop: String,
+    @SerialName("overview") val overview: String = "",
+    @SerialName("poster_path") val poster: String = "",
+    @SerialName("backdrop_path") val backdrop: String = "",
     @SerialName("vote_average") val ratings: Float, // vote_average
     @SerialName("vote_count") val numberOfRatings: Int, // vote_count
     @SerialName("adult") val adult: Boolean, // adult
-    @SerialName("runtime") val runtime: Int,
+    @SerialName("runtime") val runtime: Int = 0,
     @SerialName("genres") val genres: List<Genre>,
     @SerialName("credits") val actors: CreditsResponse
 ) {

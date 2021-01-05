@@ -12,6 +12,7 @@ import com.androidacademy.academyapp2020.R
 import com.androidacademy.academyapp2020.data.entity.Movie
 import com.androidacademy.academyapp2020.data.repository.MovieRepositoryImpl
 import com.androidacademy.academyapp2020.databinding.FragmentMovieDetailsBinding
+import com.androidacademy.academyapp2020.network.RetrofitModule
 import com.androidacademy.academyapp2020.utils.LoadStatus
 import com.androidacademy.academyapp2020.utils.loadMovieBackdrop
 import com.androidacademy.academyapp2020.view.adapter.ActorAdapter
@@ -22,7 +23,7 @@ const val ARG_MOVIE = "movie_param"
 
 class MovieDetailsFragment : Fragment() {
 
-    private val repository = MovieRepositoryImpl()
+    private val repository = MovieRepositoryImpl(RetrofitModule.movieApiService)
     private val viewModel: MovieDetailsViewModel by viewModels { ViewModelFactory(repository) }
 
     private var movieId: Int? = null
