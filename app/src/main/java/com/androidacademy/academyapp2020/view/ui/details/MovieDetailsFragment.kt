@@ -43,9 +43,7 @@ class MovieDetailsFragment : Fragment() {
     ): View {
         _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
 
-        viewModel.movie.observe(viewLifecycleOwner, this::initMovieViews)
-        viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
-        viewModel.getMovie(movieId)
+        initObservers()
 
         return binding.root
     }
@@ -55,7 +53,13 @@ class MovieDetailsFragment : Fragment() {
         _binding = null
     }
 
-    private fun initMovieViews(movie: Movie?) {
+    private fun initObservers() {
+        viewModel.movie.observe(viewLifecycleOwner, this::initMovieDetailsViews)
+        viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
+        viewModel.getMovie(movieId)
+    }
+
+    private fun initMovieDetailsViews(movie: Movie?) {
         binding.apply {
             movie?.let {
                 if (it.actors.isEmpty()) tvMovieDetailsCast.visibility = View.GONE

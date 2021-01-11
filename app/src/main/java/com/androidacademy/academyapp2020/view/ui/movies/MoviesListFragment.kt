@@ -39,10 +39,7 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
 
         initMovieRecyclerView()
-        // TODO extract
-//        viewModel.moviesList.observe(viewLifecycleOwner, this::updateMovieAdapter)
-        viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
-        viewModel.getMovies().observe(viewLifecycleOwner, this::updateMovieAdapter)
+        initObservers()
 
         return binding.root
     }
@@ -65,6 +62,11 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
             adapter = movieAdapter
             addItemDecoration(ItemDecorator(left = 6, right = 6, bottom = 6, top = 6))
         }
+    }
+
+    private fun initObservers() {
+        viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
+        viewModel.getMovies().observe(viewLifecycleOwner, this::updateMovieAdapter)
     }
 
     private fun updateMovieAdapter(movies: PagedList<Movie>?) {
