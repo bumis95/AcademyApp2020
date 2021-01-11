@@ -26,14 +26,14 @@ class MovieDetailsFragment : Fragment() {
     private val repository = MovieRepositoryImpl(RetrofitModule.movieApiService)
     private val viewModel: MovieDetailsViewModel by viewModels { ViewModelFactory(repository) }
 
-    private var movieId: Int? = null
+    private var movieId: Int = -1
 
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieId = arguments?.getInt(ARG_MOVIE)
+        movieId = requireArguments().getInt(ARG_MOVIE)
     }
 
     override fun onCreateView(

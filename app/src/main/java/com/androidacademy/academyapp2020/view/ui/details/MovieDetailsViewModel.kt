@@ -19,12 +19,11 @@ class MovieDetailsViewModel(private val movieRepository: MovieRepository) : View
     val movie: LiveData<Movie>
         get() = _movie
 
-    // TODO del !!
-    fun getMovie(movieId: Int?) {
+    fun getMovie(movieId: Int) {
         viewModelScope.launch {
             try {
                 _status.value = LoadStatus.Loading
-                _movie.value = movieRepository.loadMovieDetails(movieId!!)
+                _movie.value = movieRepository.loadMovieDetails(movieId)
                 _status.value = LoadStatus.Success
             } catch (exception: Exception) {
                 _status.value = LoadStatus.Error
