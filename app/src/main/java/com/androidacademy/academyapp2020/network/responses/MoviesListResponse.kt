@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020.network.response
+package com.androidacademy.academyapp2020.network.responses
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

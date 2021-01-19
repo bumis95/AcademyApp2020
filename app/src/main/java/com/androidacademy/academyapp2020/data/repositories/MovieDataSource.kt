@@ -1,8 +1,8 @@
-package com.androidacademy.academyapp2020.data.repository
+package com.androidacademy.academyapp2020.data.repositories
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import com.androidacademy.academyapp2020.data.entity.Movie
+import com.androidacademy.academyapp2020.data.entities.Movie
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

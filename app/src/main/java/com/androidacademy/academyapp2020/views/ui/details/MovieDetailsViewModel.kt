@@ -1,11 +1,11 @@
-package com.androidacademy.academyapp2020.view.ui.details
+package com.androidacademy.academyapp2020.views.ui.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.androidacademy.academyapp2020.data.entity.Movie
-import com.androidacademy.academyapp2020.data.repository.MovieRepository
+import com.androidacademy.academyapp2020.data.entities.Movie
+import com.androidacademy.academyapp2020.data.repositories.MovieRepository
 import com.androidacademy.academyapp2020.utils.LoadStatus
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020.view.ui.movies
+package com.androidacademy.academyapp2020.views.ui.movies
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -11,15 +11,15 @@ import androidx.fragment.app.viewModels
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.data.entity.Movie
-import com.androidacademy.academyapp2020.data.repository.MovieRepositoryImpl
+import com.androidacademy.academyapp2020.data.entities.Movie
+import com.androidacademy.academyapp2020.data.repositories.MovieRepositoryImpl
 import com.androidacademy.academyapp2020.databinding.FragmentMoviesListBinding
 import com.androidacademy.academyapp2020.network.RetrofitModule
 import com.androidacademy.academyapp2020.utils.LoadStatus
-import com.androidacademy.academyapp2020.view.adapter.ItemDecorator
-import com.androidacademy.academyapp2020.view.adapter.MovieAdapter
-import com.androidacademy.academyapp2020.view.ui.details.MovieDetailsFragment
-import com.androidacademy.academyapp2020.viewmodel.ViewModelFactory
+import com.androidacademy.academyapp2020.viewmodelfactory.ViewModelFactory
+import com.androidacademy.academyapp2020.views.adapters.ItemDecorator
+import com.androidacademy.academyapp2020.views.adapters.MovieAdapter
+import com.androidacademy.academyapp2020.views.ui.details.MovieDetailsFragment
 
 class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
 

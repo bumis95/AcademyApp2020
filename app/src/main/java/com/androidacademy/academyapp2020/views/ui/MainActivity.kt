@@ -1,9 +1,9 @@
-package com.androidacademy.academyapp2020.view.ui
+package com.androidacademy.academyapp2020.views.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.view.ui.movies.MoviesListFragment
+import com.androidacademy.academyapp2020.views.ui.movies.MoviesListFragment
 
 class MainActivity : AppCompatActivity() {
 

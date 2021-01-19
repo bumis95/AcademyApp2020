@@ -1,10 +1,10 @@
-package com.androidacademy.academyapp2020.viewmodel
+package com.androidacademy.academyapp2020.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.androidacademy.academyapp2020.data.repository.MovieRepository
-import com.androidacademy.academyapp2020.view.ui.details.MovieDetailsViewModel
-import com.androidacademy.academyapp2020.view.ui.movies.MoviesListViewModel
+import com.androidacademy.academyapp2020.data.repositories.MovieRepository
+import com.androidacademy.academyapp2020.views.ui.details.MovieDetailsViewModel
+import com.androidacademy.academyapp2020.views.ui.movies.MoviesListViewModel
 
 class ViewModelFactory(private val movieRepository: MovieRepository) : ViewModelProvider.Factory {
 

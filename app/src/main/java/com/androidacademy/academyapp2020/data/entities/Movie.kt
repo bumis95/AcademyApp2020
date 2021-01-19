@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020.data.entity
+package com.androidacademy.academyapp2020.data.entities
 
 data class Movie(
     val id: Int,
