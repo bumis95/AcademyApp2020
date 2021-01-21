@@ -1,7 +1,7 @@
-package com.androidacademy.academyapp2020.network.responses
+package com.androidacademy.academyapp2020.repositories.network.responses
 
-import com.androidacademy.academyapp2020.data.entities.Genre
-import com.androidacademy.academyapp2020.data.entities.Movie
+import com.androidacademy.academyapp2020.models.Genre
+import com.androidacademy.academyapp2020.models.Movie
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

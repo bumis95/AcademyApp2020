@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.data.entities.Movie
-import com.androidacademy.academyapp2020.data.repositories.MovieRepositoryImpl
 import com.androidacademy.academyapp2020.databinding.FragmentMovieDetailsBinding
-import com.androidacademy.academyapp2020.network.RetrofitModule
+import com.androidacademy.academyapp2020.models.Movie
 import com.androidacademy.academyapp2020.utils.LoadStatus
 import com.androidacademy.academyapp2020.utils.loadMovieBackdrop
 import com.androidacademy.academyapp2020.viewmodelfactory.ViewModelFactory
@@ -23,8 +21,7 @@ const val ARG_MOVIE = "movie_param"
 
 class MovieDetailsFragment : Fragment() {
 
-    private val repository = MovieRepositoryImpl(RetrofitModule.movieApiService)
-    private val viewModel: MovieDetailsViewModel by viewModels { ViewModelFactory(repository) }
+    private val viewModel: MovieDetailsViewModel by viewModels { ViewModelFactory() }
 
     private var movieId: Int = -1
 

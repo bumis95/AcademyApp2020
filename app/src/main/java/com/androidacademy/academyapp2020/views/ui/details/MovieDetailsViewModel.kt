@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.androidacademy.academyapp2020.data.entities.Movie
-import com.androidacademy.academyapp2020.data.repositories.MovieRepository
+import com.androidacademy.academyapp2020.data.MovieRepository
+import com.androidacademy.academyapp2020.models.Movie
 import com.androidacademy.academyapp2020.utils.LoadStatus
 import kotlinx.coroutines.launch
 

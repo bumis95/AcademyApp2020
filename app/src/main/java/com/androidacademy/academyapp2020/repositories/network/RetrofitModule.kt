@@ -1,5 +1,6 @@
-package com.androidacademy.academyapp2020.network
+package com.androidacademy.academyapp2020.repositories.network
 
+import com.androidacademy.academyapp2020.repositories.network.interceptors.ApiKeyInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -36,5 +37,5 @@ object RetrofitModule {
         .addConverterFactory(json.asConverterFactory(contentType))
         .build()
 
-    val movieApiService: MovieApiService = retrofit.create()
+    val movieApiService: TmbdApiService = retrofit.create()
 }

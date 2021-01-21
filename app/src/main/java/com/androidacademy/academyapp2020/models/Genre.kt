@@ -1,4 +1,4 @@
-package com.androidacademy.academyapp2020.data.entities
+package com.androidacademy.academyapp2020.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

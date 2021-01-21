@@ -8,25 +8,23 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.paging.PagedList
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.data.entities.Movie
-import com.androidacademy.academyapp2020.data.repositories.MovieRepositoryImpl
 import com.androidacademy.academyapp2020.databinding.FragmentMoviesListBinding
-import com.androidacademy.academyapp2020.network.RetrofitModule
-import com.androidacademy.academyapp2020.utils.LoadStatus
 import com.androidacademy.academyapp2020.viewmodelfactory.ViewModelFactory
 import com.androidacademy.academyapp2020.views.adapters.ItemDecorator
-import com.androidacademy.academyapp2020.views.adapters.MovieAdapter
+import com.androidacademy.academyapp2020.views.adapters.MoviePagingDataAdapter
 import com.androidacademy.academyapp2020.views.ui.details.MovieDetailsFragment
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
+class MoviesListFragment : Fragment(), MoviePagingDataAdapter.OnMovieClickListener {
 
-    private val repository = MovieRepositoryImpl(RetrofitModule.movieApiService)
-    private val viewModel: MoviesListViewModel by viewModels { ViewModelFactory(repository) }
+    private val viewModel: MoviesListViewModel by viewModels { ViewModelFactory() }
 
-    private val movieAdapter = MovieAdapter(this)
+    private val movieAdapter = MoviePagingDataAdapter(this)
 
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
@@ -65,24 +63,17 @@ class MoviesListFragment : Fragment(), MovieAdapter.OnMovieClickListener {
     }
 
     private fun initObservers() {
-        viewModel.status.observe(viewLifecycleOwner, this::updateProgressBar)
-        viewModel.getMovies().observe(viewLifecycleOwner, this::updateMovieAdapter)
-    }
-
-    private fun updateMovieAdapter(movies: PagedList<Movie>?) {
-        movieAdapter.submitList(movies)
-    }
-
-    private fun updateProgressBar(status: LoadStatus) {
-        when (status) {
-            is LoadStatus.Success -> showProgressBar(false)
-            is LoadStatus.Loading -> showProgressBar(true)
-            is LoadStatus.Error -> showProgressBar(false)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.fetchMovies().collectLatest {
+                movieAdapter.submitData(it)
+            }
         }
-    }
-
-    private fun showProgressBar(loading: Boolean) {
-        binding.pbMoviesList.isVisible = loading
+        viewLifecycleOwner.lifecycleScope.launch {
+            movieAdapter.loadStateFlow.collectLatest { loadStates ->
+                binding.pbMoviesList.isVisible =
+                    loadStates.refresh is LoadState.Loading || loadStates.append is LoadState.Loading
+            }
+        }
     }
 
     override fun onMovieClick(movieId: Int) {

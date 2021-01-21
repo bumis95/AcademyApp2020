@@ -3,17 +3,17 @@ package com.androidacademy.academyapp2020.views.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.androidacademy.academyapp2020.R
-import com.androidacademy.academyapp2020.data.entities.Movie
 import com.androidacademy.academyapp2020.databinding.ViewHolderMovieBinding
+import com.androidacademy.academyapp2020.models.Movie
 import com.androidacademy.academyapp2020.utils.loadMoviePicture
 
-class MovieAdapter(
+class MoviePagingDataAdapter(
     private val listener: OnMovieClickListener
-) : PagedListAdapter<Movie, MovieAdapter.MovieViewHolder>(MoviesCallback()) {
+) : PagingDataAdapter<Movie, MoviePagingDataAdapter.MovieViewHolder>(MoviesCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
         MovieViewHolder(

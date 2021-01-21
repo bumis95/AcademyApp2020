@@ -1,52 +1,30 @@
 package com.androidacademy.academyapp2020.views.ui.movies
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
-import com.androidacademy.academyapp2020.data.entities.Movie
-import com.androidacademy.academyapp2020.data.repositories.MovieDataSource
-import com.androidacademy.academyapp2020.data.repositories.MovieRepository
-import com.androidacademy.academyapp2020.utils.LoadStatus
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.androidacademy.academyapp2020.data.MoviePagingSource
+import com.androidacademy.academyapp2020.data.MovieRepository
+import com.androidacademy.academyapp2020.models.Movie
+import kotlinx.coroutines.flow.Flow
+
+const val DEFAULT_PAGE_SIZE = 1
 
 class MoviesListViewModel(private val movieRepository: MovieRepository) : ViewModel() {
 
-    private val _status = MutableLiveData<LoadStatus>()
-    val status: LiveData<LoadStatus>
-        get() = _status
+    private val moviesList: Flow<PagingData<Movie>> =
+        Pager(
+            config = getDefaultPageConfig(),
+            pagingSourceFactory = { MoviePagingSource(movieRepository) }
+        )
+            .flow.cachedIn(viewModelScope)
 
-    private val moviesList: LiveData<PagedList<Movie>>
-
-    init {
-        val config = PagedList.Config.Builder()
-            .setPageSize(20)
-            .setEnablePlaceholders(false)
-            .build()
-        moviesList = initializedPagedListBuilder(config).build()
+    private fun getDefaultPageConfig(): PagingConfig {
+        return PagingConfig(pageSize = DEFAULT_PAGE_SIZE)
     }
 
-    fun getMovies(): LiveData<PagedList<Movie>> = moviesList
-
-    private fun initializedPagedListBuilder(config: PagedList.Config): LivePagedListBuilder<Int, Movie> {
-        val dataSourceFactory = object : DataSource.Factory<Int, Movie>() {
-            override fun create(): DataSource<Int, Movie> {
-                return MovieDataSource(movieRepository)
-            }
-        }
-        return LivePagedListBuilder(dataSourceFactory, config)
-    }
-
-    //    fun getMovies() {
-//        viewModelScope.launch {
-//            try {
-//                _status.value = LoadStatus.Loading
-//                _moviesList.value = movieRepository.loadMoviesList()
-//                _status.value = LoadStatus.Success
-//            } catch (exception: Exception) {
-//                _status.value = LoadStatus.Error
-//            }
-//        }
-//    }
+    fun fetchMovies(): Flow<PagingData<Movie>> = moviesList
 }
