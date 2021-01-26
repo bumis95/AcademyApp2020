@@ -27,7 +27,6 @@ class ItemDecorator(
             dip(view.context, right),
             dip(view.context, bottom)
         )
-
     }
 
     private fun dip(context: Context, dp: Int) =

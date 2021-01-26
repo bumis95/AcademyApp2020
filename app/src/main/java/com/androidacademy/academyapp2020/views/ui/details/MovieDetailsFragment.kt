@@ -72,7 +72,7 @@ class MovieDetailsFragment : Fragment() {
             rvActors.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = ActorAdapter(movie!!.actors)
-                addItemDecoration(ItemDecorator(left = 4, right = 4))
+                if (itemDecorationCount == 0) addItemDecoration(ItemDecorator(left = 4, right = 4))
                 setHasFixedSize(true)
             }
             tvMovieDetailsBack.setOnClickListener {
