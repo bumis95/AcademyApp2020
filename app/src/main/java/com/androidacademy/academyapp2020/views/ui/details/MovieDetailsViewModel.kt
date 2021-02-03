@@ -9,7 +9,7 @@ import com.androidacademy.academyapp2020.models.Movie
 import com.androidacademy.academyapp2020.utils.LoadStatus
 import kotlinx.coroutines.launch
 
-class MovieDetailsViewModel(private val movieRepository: MovieRepository) : ViewModel() {
+class MovieDetailsViewModel(private val movieRemoteRepository: MovieRepository) : ViewModel() {
 
     private val _status = MutableLiveData<LoadStatus>()
     val status: LiveData<LoadStatus>
@@ -23,7 +23,7 @@ class MovieDetailsViewModel(private val movieRepository: MovieRepository) : View
         viewModelScope.launch {
             try {
                 _status.value = LoadStatus.Loading
-                _movie.value = movieRepository.loadMovieDetails(movieId)
+                _movie.value = movieRemoteRepository.loadMovieDetails(movieId)
                 _status.value = LoadStatus.Success
             } catch (exception: Exception) {
                 _status.value = LoadStatus.Error

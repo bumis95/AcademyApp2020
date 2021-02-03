@@ -2,6 +2,7 @@ package com.androidacademy.academyapp2020.views.ui.movies
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
 
 class MoviesListFragment : Fragment(), MoviePagingDataAdapter.OnMovieClickListener {
 
-    private val viewModel: MoviesListViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: MoviesListViewModel by viewModels { ViewModelFactory(requireContext()) }
 
     private val movieAdapter = MoviePagingDataAdapter(this)
 
@@ -77,6 +78,7 @@ class MoviesListFragment : Fragment(), MoviePagingDataAdapter.OnMovieClickListen
     }
 
     override fun onMovieClick(movieId: Int) {
+        Log.d("FRAGMENT", "Click on movie with id=$movieId")
         requireActivity().supportFragmentManager.beginTransaction().apply {
             add(R.id.fragment_container, MovieDetailsFragment.newInstance(movieId))
             addToBackStack(null)

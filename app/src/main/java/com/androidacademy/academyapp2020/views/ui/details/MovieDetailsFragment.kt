@@ -21,7 +21,7 @@ const val ARG_MOVIE = "movie_param"
 
 class MovieDetailsFragment : Fragment() {
 
-    private val viewModel: MovieDetailsViewModel by viewModels { ViewModelFactory() }
+    private val viewModel: MovieDetailsViewModel by viewModels { ViewModelFactory(requireContext()) }
 
     private var movieId: Int = -1
 
