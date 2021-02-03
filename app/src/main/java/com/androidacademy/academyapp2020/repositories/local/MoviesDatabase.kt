@@ -12,7 +12,7 @@ import com.androidacademy.academyapp2020.models.Movie
     version = 1,
     exportSchema = false
 )
-@TypeConverters(ActorConverter::class, GenreConverter::class)
+@TypeConverters(MovieConverter::class)
 abstract class MoviesDatabase : RoomDatabase() {
 
     abstract fun getMoviesDao(): MoviesDao

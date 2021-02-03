@@ -15,7 +15,7 @@ class MovieRepository(
     private val database: MoviesDatabase
 ) : LocalRepository, RemoteRepository {
 
-//    private var isCached = true
+    private var isCached = true
 
     override suspend fun insertMoviesToDatabase(movies: List<Movie>) =
         withContext(Dispatchers.IO) {
@@ -46,30 +46,31 @@ class MovieRepository(
         val idsList: List<MovieId>
         val moviesList = mutableListOf<Movie>()
         try {
-//            if (isCached) {
-//                val db: List<Movie> = getAllMoviesFromDatabase()
-//                isCached = false
-//                emit(db)
-//            }
-            idsList = apiService.getPopularMovies(page).movieIdsList
-            idsList.forEach {
-                val movie = loadMovieDetails(it.id)
-                Log.d(REPOSITORY_TAG, movie.toString())
-                moviesList.add(movie)
+            if (isCached) {
+                val db: List<Movie> = getAllMoviesFromDatabase()
+                isCached = false
+                Log.d(REPOSITORY_TAG, "$isCached")
+                emit(db)
+            } else {
+                idsList = apiService.getPopularMovies(page).movieIdsList
+                idsList.forEach {
+                    val movie = loadMovieDetails(it.id)
+                    Log.d(REPOSITORY_TAG, movie.toString())
+                    moviesList.add(movie)
+                }
+                emit(moviesList)
+                insertMoviesToDatabase(moviesList)
             }
-            emit(moviesList)
-            insertMoviesToDatabase(moviesList)
         } catch (e: Exception) {
             Log.d(REPOSITORY_TAG, "Error while loading movies list (page=${page}): $e")
         }
     }
 
     override suspend fun loadMovieDetails(movieId: Int): Movie =
-//        if (isCached) {
-//            getMovieFromDatabaseById(movieId)
-//        } else
+        if (isCached) {
+            getMovieFromDatabaseById(movieId)
+        } else
             apiService.getMovieDetailsById(movieId).toMovie()
-
 
     companion object {
         const val DEFAULT_PAGE_INDEX = 1
