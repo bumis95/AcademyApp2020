@@ -3,6 +3,7 @@ package com.androidacademy.academyapp2020.view.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.androidacademy.academyapp2020.R
+import com.androidacademy.academyapp2020.view.ui.movies.MoviesListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().apply {
-                add(R.id.fragment_container, FragmentMoviesList())
+                add(R.id.fragment_container, MoviesListFragment())
                 commit()
             }
         }
